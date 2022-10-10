@@ -1,0 +1,12 @@
+@use 'abstracts/' as *;
+
+.logo {
+    width: 100%;
+    display: flex;
+    margin-top: 3em;
+    margin-left: 5em;
+    font-size: $regular;
+    color: white;
+    user-select: none;
+
+}

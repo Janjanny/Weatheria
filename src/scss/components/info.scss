@@ -1,0 +1,55 @@
+@use 'abstracts/' as *;
+
+
+.info {
+    position: absolute;
+    bottom: 0;
+    padding-left: 5em;
+    color: white;
+    height: 25vh;
+    width: 100%;
+    text-shadow: rgb(67, 67, 67) 1px 0 10px;
+    cursor: default;
+
+    .degree-div{
+        display: inline-block;
+        .degree {
+            font-weight: $normal;
+            font-size: calc($title + 1em);
+    
+        }
+    }
+
+    .city-div {
+        display: inline-block;
+        line-height: 3em;
+        margin-right: 2em;
+        margin-bottom: 1.5em;
+        vertical-align: bottom;
+
+        .city-name {
+            font-size: calc($big-heading + 1em);
+            font-weight: $normal;
+    
+        }
+    
+        .date-time {
+            font-size: $regular2;
+            font-weight: $normal;
+        }
+    }
+
+    .text-icon {
+        display: inline-block;
+        text-align: center;
+        vertical-align: bottom;
+        margin-bottom: 1.8em;
+        .weather-icon {
+            font-size: $heading;
+        }
+        .situation {
+            font-size: $regular2;
+            font-weight: $normal;
+        }
+    }
+}

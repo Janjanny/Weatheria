@@ -4,20 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
+    <title>Weatheria</title>
     <script src="https://kit.fontawesome.com/2ac6ace852.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 <body>
     <div class="container">
-        <div class="logo"><h1>Weatheria</h1><span class="material-symbols-outlined">
+        <div class="logo"><h2>Weatheria</h2><span class="material-symbols-outlined">
             routine
             </span></div>
         <div class="info">
-            <h1 class="degree">26°</h1>
-            <h1 class="city-name">London</h1>
-            <h2 class="date-time">10:36 - Tuesday, 22 Oct '19</h2>
-            <h2>Sunny</h2>
+            <div class="degree-div">
+                <h1 class="degree">26°</h1>
+            </div>
+            <div class="city-div">
+                <h2 class="city-name">London</h2>
+                <h2 class="date-time">10:36 - Tuesday, 22 Oct '19</h2>
+            </div>
+            <div class="text-icon">
+                <span class="weather-icon"><i class="fa-regular fa-sun"></i></span>
+            <h2 class="situation">Sunny</h2>
+            </div>
         </div>
         <div class="glass">
             <input type="text" name="" id="city-input" class="input">
@@ -48,21 +55,17 @@
                 </article>
                 <hr>
                 <h1 class="title2">3-Day Forecast</h1>
-                <article class="item">
-                    <p>Mon, Oct 10</p>
-                    <p>16/11°C</p>
-                    <p>Light Rain</p>
-                </article>
-                <article class="item">
-                    <p>Tue, Oct 11</p>
-                    <p>16/11°C</p>
-                    <p>Light Rain</p>
-                </article>
-                <article class="item">
-                    <p>Wed, Oct 12</p>
-                    <p>16/11°C</p>
-                    <p>Light Rain</p>
-                </article>
+                <div class="forecast">
+                        <p>Mon, Oct 10</p>
+                        <p class="temp">16/11°C</p>
+                        <p class="weather">Rain</p>
+                        <p>Tue, Oct 11</p>
+                        <p class="temp">16/11°C</p>
+                        <p class="weather">Light Rain</p>
+                        <p>Wed, Oct 12</p>
+                        <p class="temp">16/11°C</p>
+                        <p class="weather">Heavy Rain</p>
+                </div>
             </section>
         </div>
     </div>

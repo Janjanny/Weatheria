@@ -184,7 +184,7 @@
 }
 .glass .details {
   margin-top: 3em;
-  user-select: none;
+  cursor: default;
 }
 .glass .details .title {
   font-size: 1.8em;
@@ -214,6 +214,75 @@
   font-size: 1.8em;
   text-transform: uppercase;
   margin-top: 1em;
+  font-weight: 400;
+}
+.glass .forecast {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  width: 100%;
+}
+.glass .forecast .weather {
+  text-align: right;
+}
+.glass .forecast .temp {
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+  display: flex;
+  margin-top: 3em;
+  margin-left: 5em;
+  font-size: 1.1em;
+  color: white;
+  user-select: none;
+}
+
+.info {
+  position: absolute;
+  bottom: 0;
+  padding-left: 5em;
+  color: white;
+  height: 25vh;
+  width: 100%;
+  text-shadow: rgb(67, 67, 67) 1px 0 10px;
+  cursor: default;
+}
+.info .degree-div {
+  display: inline-block;
+}
+.info .degree-div .degree {
+  font-weight: 400;
+  font-size: 7em;
+}
+.info .city-div {
+  display: inline-block;
+  line-height: 3em;
+  margin-right: 2em;
+  margin-bottom: 1.5em;
+  vertical-align: bottom;
+}
+.info .city-div .city-name {
+  font-size: 4.5em;
+  font-weight: 400;
+}
+.info .city-div .date-time {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+.info .text-icon {
+  display: inline-block;
+  text-align: center;
+  vertical-align: bottom;
+  margin-bottom: 1.8em;
+}
+.info .text-icon .weather-icon {
+  font-size: 2.3em;
+}
+.info .text-icon .situation {
+  font-size: 1.5em;
   font-weight: 400;
 }
 
