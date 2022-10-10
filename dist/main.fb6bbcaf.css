@@ -142,9 +142,9 @@
   right: 0;
   top: 0;
   /* From https://css.glass */
-  background: rgba(0, 0, 0, 0.238);
+  background: rgba(0, 0, 0, 0.295);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(18px);
   border: 1px solid rgba(254, 254, 254, 0.36);
   padding: 4em;
   color: white;
@@ -183,9 +183,38 @@
   transform-origin: top right;
 }
 .glass .details {
-  margin-top: 5em;
-  text-transform: uppercase;
+  margin-top: 3em;
   user-select: none;
+}
+.glass .details .title {
+  font-size: 1.8em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+.glass .details .description {
+  margin-top: 1em;
+  font-size: 1.5em;
+  font-weight: 100;
+}
+.glass .details hr {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border-bottom: 0.5px solid white;
+}
+.glass .details .item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+  font-size: 1.1em;
+  font-weight: 300;
+  text-transform: capitalize;
+}
+.glass .details .title2 {
+  font-size: 1.8em;
+  text-transform: uppercase;
+  margin-top: 1em;
+  font-weight: 400;
 }
 
 *,
@@ -196,6 +225,10 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  font-size: 16px;
 }
 
 /*# sourceMappingURL=/main.fb6bbcaf.css.map */

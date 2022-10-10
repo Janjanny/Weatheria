@@ -8,9 +8,9 @@
     right: 0;
     top: 0;
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.238);
+    background: rgba(0, 0, 0, 0.295);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(18px);
     border: 1px solid rgba(254, 254, 254, 0.36);
     padding: 4em;
     color: white;
@@ -55,8 +55,44 @@
     }
 
     .details {
-        margin-top: 5em;
-        text-transform: uppercase;
+        margin-top: 3em;
         user-select: none;
+
+        .title {
+            font-size: $button-font;
+            text-transform: uppercase;
+            font-weight: $normal;
+
+
+        }
+        .description {
+            margin-top: 1em;
+            font-size: $regular2;
+            font-weight: $thin;
+
+        }
+        hr {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            border-bottom: .5px solid white;
+        }
+
+        .item {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1em;
+            font-size: $regular;
+            font-weight: $light;
+            text-transform: capitalize;
+        }
+
+        .title2 {
+            font-size: $button-font;
+            text-transform: uppercase;
+            margin-top: 1em;
+            font-weight: $normal;
+
+        }
     }
 }
