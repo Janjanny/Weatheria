@@ -12,7 +12,7 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(18px);
     border: 1px solid rgba(254, 254, 254, 0.36);
-    padding: 4em;
+    padding: 2em 4em;
     color: white;
 
     .input {
@@ -34,8 +34,8 @@
         right: 0;
         font-size: $heading;
         padding: 0;
-        width: 3em;
-        height: 3em;
+        width: 2.5em;
+        height: 2.5em;
         cursor: pointer;
         border: none;
         background-color: #97D2EC;
@@ -55,7 +55,7 @@
     }
 
     .details {
-        margin-top: 3em;
+        margin-top: 2em;
         cursor: default;
 
         .title {

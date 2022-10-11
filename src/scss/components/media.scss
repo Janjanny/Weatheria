@@ -1,0 +1,128 @@
+@use 'abstracts/' as *;
+
+@media screen and (max-width: 1210px) {
+    .info {
+        font-size: 14px;
+        height: 20vh;
+
+    }
+}
+
+@media screen and (max-width: 1083px) {
+    .glass {
+        font-size: 15px;
+        padding: 2em 3em;
+
+    }
+    
+    .info {
+        font-size: 13px;
+        height: 20vh;
+
+    }
+}
+
+
+@media screen and (max-width: 980px) {
+    .glass {
+        font-size: 14px;
+        padding: 2em 2em;
+
+    }
+
+    .logo {
+        margin-left: 3em;
+    }
+    
+    .info {
+        font-size: 12px;
+        padding-left: 3em;
+
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .glass {
+        font-size: 14px;
+        padding: 2em 2em;
+
+    }
+
+    .logo {
+        margin-left: 2em;
+    }
+    
+    .info {
+        font-size: 12px;
+        padding-left: 2em;
+
+    }
+}
+
+@media screen and (max-width: 811px) {
+    .glass {
+        font-size: 14px;
+        padding: 2em 2em;
+        width: 45%;
+
+    }
+
+    .logo {
+        margin-left: 2em;
+    }
+    
+    .info {
+        font-size: 10px;
+        padding-left: 2em;
+        height: 15vh;
+
+    }
+}
+
+@media screen and (max-width: 742px) {
+    .glass {
+        font-size: 14px;
+        padding: 2em 2em;
+        width: 100%;
+        height: 40%;
+        overflow: auto;
+        top: auto;
+        bottom: 0;
+    }
+
+    .logo {
+        margin-left: 2em;
+    }
+    
+    .info {
+        font-size: 10px;
+        padding-left: 2em;
+        height: 15vh;
+        bottom: 40%;
+
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .glass {
+        font-size: 12px;
+        padding: 2em 2em;
+        width: 100%;
+        height: 40%;
+        overflow: auto;
+        top: auto;
+        bottom: 0;
+    }
+
+    .logo {
+        margin-left: 2em;
+    }
+    
+    .info {
+        font-size: 8px;
+        padding-left: 2em;
+        height: 12vh;
+        bottom: 40%;
+
+    }
+}
