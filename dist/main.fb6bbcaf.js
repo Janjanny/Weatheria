@@ -193,6 +193,69 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 require("./../scss/main.scss");
+
+//input variables
+var cityInput = document.querySelector(".input");
+var form = document.getElementById("search-form"); //details variables
+
+var cityName = document.querySelector(".city-name");
+var dateTime = document.querySelector(".date-time");
+var degree = document.querySelector(".degree");
+var situation = document.querySelector('.situation');
+var description = document.querySelector(".description");
+var wind = document.querySelector(".wind");
+var humid = document.querySelector(".humid");
+var dew = document.querySelector(".dew");
+var pressure = document.querySelector(".pressure");
+var visibility = document.querySelector(".visibility");
+var current = new Date();
+var days = {
+  1: "Monday",
+  2: "Tuesday",
+  3: "Wednesday",
+  4: "Thursday",
+  5: "Friday",
+  6: "Saturday",
+  7: "Sunday"
+};
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; //add the http request for requesting the api
+
+var apiRequest = new XMLHttpRequest(); //add event listener when submitting the form
+
+form.addEventListener('submit', function (e) {
+  //prevent default for refreshing the page
+  e.preventDefault(); //store the user input
+
+  var chosenCity = cityInput.value; //send a request to the open weather api
+  //1 open and get the api
+
+  apiRequest.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=' + chosenCity + '&appid=5d27d5f754c4d9fb46a79a45598f8f18&mdoe=json&units=metric'); //2 send the request
+
+  apiRequest.send();
+}); //this function is called everytime the ready state changes
+//ready state changes from 0 to 4
+//4 means object is populate by the api
+
+apiRequest.onreadystatechange = function () {
+  //base case error if city does not exist
+  if (apiRequest.status === 404) {
+    cityName.textContent = "City not found";
+  } //variable containing the json object of the result of the api
+
+
+  var apiResponse = JSON.parse(apiRequest.response); //set the results
+  //set the degree
+
+  var degreeCelsius = apiResponse.main.temp;
+  degree.textContent = Math.round(degreeCelsius) + '°'; //set city name
+
+  cityName.textContent = apiResponse.name; //set data time
+
+  var year = current.getFullYear().toString();
+  var yearArr = year.split("");
+  yearArr.splice(0, 2);
+  dateTime.textContent = "".concat(current.getHours(), ":").concat(current.getMinutes(), " - ").concat(days[current.getDay()], ", ").concat(current.getDate(), " ").concat(months[current.getMonth()], " '").concat(yearArr.join("")); //set situation
+};
 },{"./../scss/main.scss":"scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -221,7 +284,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50075" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50382" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
