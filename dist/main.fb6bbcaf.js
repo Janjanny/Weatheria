@@ -249,7 +249,7 @@ apiRequest.onreadystatechange = function () {
   var degreeCelsius = apiResponse.main.temp;
   degree.textContent = Math.round(degreeCelsius) + '°'; //set city name
 
-  cityName.textContent = apiResponse.name; //set data time
+  cityName.textContent = apiResponse.name; //set date time
 
   var year = current.getFullYear().toString();
   var yearArr = year.split("");

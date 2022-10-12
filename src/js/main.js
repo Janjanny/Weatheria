@@ -92,7 +92,7 @@ apiRequest.onreadystatechange = () => {
     //set city name
     cityName.textContent = apiResponse.name;
 
-    //set data time
+    //set date time
     let year = current.getFullYear().toString();
     let yearArr = year.split("");
     yearArr.splice(0,2);
@@ -100,6 +100,6 @@ apiRequest.onreadystatechange = () => {
     dateTime.textContent = `${current.getHours()}:${current.getMinutes()} - ${days[current.getDay()]}, ${current.getDate()} ${months[current.getMonth()]} '${yearArr.join("")}`;
 
     //set situation
-    
+
 
 }
