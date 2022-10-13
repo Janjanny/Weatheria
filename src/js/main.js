@@ -13,7 +13,7 @@ const description = document.querySelector(".description");
 const weatherIcon = document.querySelector(".weather-icon");
 const wind = document.querySelector(".wind");
 const humid = document.querySelector(".humid");
-const dew = document.querySelector(".dew");
+const gust = document.querySelector(".gust");
 const pressure = document.querySelector(".pressure");
 const visibility = document.querySelector(".visibility");
 
@@ -115,7 +115,56 @@ apiRequest.onreadystatechange = () => {
         if (direction >= 0 && direction <=22) {
             return "N";
         }
+        else if (direction >= 23 && direction <= 67) {
+            return "NE";
+        }
+
+        else if (direction >= 68 && direction <= 112) {
+            return "E";
+        }
+        // 113 157
+        else if (direction >= 113 && direction <= 157) {
+            return "SE";
+        }
+
+        //158 202 
+        else if (direction >= 158 && direction <= 202) {
+            return "S";
+        }
+
+        //203 247 sw 
+        else if (direction >= 203 && direction <= 247) {
+            return "SW";
+        }
+
+        //248 292 W
+        else if (direction >= 248 && direction <= 292) {
+            return "W";
+        }
+
+        //293 337 nw 
+        else if (direction >= 293 && direction <= 337) {
+            return "NW";
+        }
+
+        //338 359 
+        else if (direction >= 338 && direction <= 359) {
+            return "N";
+        }
     }
-    wind.textContent = `${apiResponse.wind.speed} m/s ${compass()} ${direction}`
+    wind.textContent = `${apiResponse.wind.speed} m/s ${compass()}`
+
+    //set humid
+    humid.textContent = `${apiResponse.main.humidity}%`;
+
+    //set sea level 
+    gust.textContent = `${apiResponse.wind.gust}m/s`
+    
+    //set pressure 
+    pressure.textContent = `${apiResponse.main.pressure}hPa`
+
+    //set visibility
+    let km = apiResponse.visibility / 1000;
+    visibility.textContent = `${km}km`
 
 }

@@ -206,7 +206,7 @@ var description = document.querySelector(".description");
 var weatherIcon = document.querySelector(".weather-icon");
 var wind = document.querySelector(".wind");
 var humid = document.querySelector(".humid");
-var dew = document.querySelector(".dew");
+var gust = document.querySelector(".gust");
 var pressure = document.querySelector(".pressure");
 var visibility = document.querySelector(".visibility");
 var current = new Date();
@@ -268,10 +268,41 @@ apiRequest.onreadystatechange = function () {
   var compass = function compass() {
     if (direction >= 0 && direction <= 22) {
       return "N";
+    } else if (direction >= 23 && direction <= 67) {
+      return "NE";
+    } else if (direction >= 68 && direction <= 112) {
+      return "E";
+    } // 113 157
+    else if (direction >= 113 && direction <= 157) {
+      return "SE";
+    } //158 202 
+    else if (direction >= 158 && direction <= 202) {
+      return "S";
+    } //203 247 sw 
+    else if (direction >= 203 && direction <= 247) {
+      return "SW";
+    } //248 292 W
+    else if (direction >= 248 && direction <= 292) {
+      return "W";
+    } //293 337 nw 
+    else if (direction >= 293 && direction <= 337) {
+      return "NW";
+    } //338 359 
+    else if (direction >= 338 && direction <= 359) {
+      return "N";
     }
   };
 
-  wind.textContent = "".concat(apiResponse.wind.speed, " m/s ").concat(compass(), " ").concat(direction);
+  wind.textContent = "".concat(apiResponse.wind.speed, " m/s ").concat(compass()); //set humid
+
+  humid.textContent = "".concat(apiResponse.main.humidity, "%"); //set sea level 
+
+  gust.textContent = "".concat(apiResponse.wind.gust, "m/s"); //set pressure 
+
+  pressure.textContent = "".concat(apiResponse.main.pressure, "hPa"); //set visibility
+
+  var km = apiResponse.visibility / 1000;
+  visibility.textContent = "".concat(km, "km");
 };
 },{"./../scss/main.scss":"scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -301,7 +332,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50070" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61437" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
