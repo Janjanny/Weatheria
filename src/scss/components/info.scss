@@ -43,7 +43,11 @@
         vertical-align: bottom;
         margin-bottom: 1.8em;
         .weather-icon {
-            font-size: $heading;
+            display: flex;
+            width: 4em;
+            height: 4em;
+            justify-content: center;
+            align-items: center;
         }
         .situation {
             font-size: $regular2;

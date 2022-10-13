@@ -195,6 +195,7 @@
   margin-top: 1em;
   font-size: 1.5em;
   font-weight: 100;
+  text-transform: capitalize;
 }
 .glass .details hr {
   margin-top: 2em;
@@ -208,7 +209,6 @@
   margin-top: 1em;
   font-size: 1.1em;
   font-weight: 300;
-  text-transform: capitalize;
 }
 .glass .details .title2 {
   font-size: 1.8em;
@@ -278,7 +278,11 @@
   margin-bottom: 1.8em;
 }
 .info .text-icon .weather-icon {
-  font-size: 2.3em;
+  display: flex;
+  width: 4em;
+  height: 4em;
+  justify-content: center;
+  align-items: center;
 }
 .info .text-icon .situation {
   font-size: 1.5em;

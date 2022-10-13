@@ -203,6 +203,7 @@ var dateTime = document.querySelector(".date-time");
 var degree = document.querySelector(".degree");
 var situation = document.querySelector('.situation');
 var description = document.querySelector(".description");
+var weatherIcon = document.querySelector(".weather-icon");
 var wind = document.querySelector(".wind");
 var humid = document.querySelector(".humid");
 var dew = document.querySelector(".dew");
@@ -255,6 +256,22 @@ apiRequest.onreadystatechange = function () {
   var yearArr = year.split("");
   yearArr.splice(0, 2);
   dateTime.textContent = "".concat(current.getHours(), ":").concat(current.getMinutes(), " - ").concat(days[current.getDay()], ", ").concat(current.getDate(), " ").concat(months[current.getMonth()], " '").concat(yearArr.join("")); //set situation
+
+  situation.textContent = apiResponse.weather[0].main; //set icon here
+
+  weatherIcon.innerHTML = "<img src=\"http://openweathermap.org/img/wn/".concat(apiResponse.weather[0].icon, ".png\">"); //set description
+
+  description.textContent = "Feels like ".concat(Math.round(apiResponse.main.feels_like), "\xB0C. ").concat(apiResponse.weather[0].description); //set wind
+
+  var direction = apiResponse.wind.deg;
+
+  var compass = function compass() {
+    if (direction >= 0 && direction <= 22) {
+      return "N";
+    }
+  };
+
+  wind.textContent = "".concat(apiResponse.wind.speed, " m/s ").concat(compass(), " ").concat(direction);
 };
 },{"./../scss/main.scss":"scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -284,7 +301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50382" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50070" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

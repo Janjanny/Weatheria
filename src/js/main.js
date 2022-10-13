@@ -10,6 +10,7 @@ const dateTime = document.querySelector(".date-time");
 const degree = document.querySelector(".degree");
 const situation = document.querySelector('.situation');
 const description = document.querySelector(".description");
+const weatherIcon = document.querySelector(".weather-icon");
 const wind = document.querySelector(".wind");
 const humid = document.querySelector(".humid");
 const dew = document.querySelector(".dew");
@@ -100,6 +101,21 @@ apiRequest.onreadystatechange = () => {
     dateTime.textContent = `${current.getHours()}:${current.getMinutes()} - ${days[current.getDay()]}, ${current.getDate()} ${months[current.getMonth()]} '${yearArr.join("")}`;
 
     //set situation
+    situation.textContent = apiResponse.weather[0].main;
 
+    //set icon here
+    weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${apiResponse.weather[0].icon}.png">`
+
+    //set description
+    description.textContent = `Feels like ${Math.round(apiResponse.main.feels_like)}°C. ${apiResponse.weather[0].description}`
+
+    //set wind
+    let direction = apiResponse.wind.deg;
+    let compass = () => {
+        if (direction >= 0 && direction <=22) {
+            return "N";
+        }
+    }
+    wind.textContent = `${apiResponse.wind.speed} m/s ${compass()} ${direction}`
 
 }

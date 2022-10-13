@@ -69,6 +69,7 @@
             margin-top: 1em;
             font-size: $regular2;
             font-weight: $thin;
+            text-transform: capitalize;
 
         }
         hr {
@@ -84,7 +85,6 @@
             margin-top: 1em;
             font-size: $regular;
             font-weight: $light;
-            text-transform: capitalize;
         }
 
         .title2 {
