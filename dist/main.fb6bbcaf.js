@@ -208,7 +208,14 @@ var wind = document.querySelector(".wind");
 var humid = document.querySelector(".humid");
 var gust = document.querySelector(".gust");
 var pressure = document.querySelector(".pressure");
-var visibility = document.querySelector(".visibility");
+var visibility = document.querySelector(".visibility"); //variables for 3 day forecast
+
+var firstTemp = document.querySelector(".first-temp");
+var firstWeather = document.querySelector(".first-weather");
+var secondTemp = document.querySelector(".second-temp");
+var secondWeather = document.querySelector(".second-weather");
+var thirdTemp = document.querySelector(".third-temp");
+var thirdWeather = document.querySelector(".third-weather");
 var current = new Date();
 var days = {
   1: "Monday",
@@ -219,9 +226,12 @@ var days = {
   6: "Saturday",
   7: "Sunday"
 };
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; //add the http request for requesting the api
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; // this is api for the daily forecast
+//add the http request for requesting the api
 
-var apiRequest = new XMLHttpRequest(); //add event listener when submitting the form
+var apiRequest = new XMLHttpRequest(); //request for 5 day api forecast
+
+var dayRequest = new XMLHttpRequest(); //add event listener when submitting the form
 
 form.addEventListener('submit', function (e) {
   //prevent default for refreshing the page
@@ -257,7 +267,37 @@ apiRequest.onreadystatechange = function () {
   yearArr.splice(0, 2);
   dateTime.textContent = "".concat(current.getHours(), ":").concat(current.getMinutes(), " - ").concat(days[current.getDay()], ", ").concat(current.getDate(), " ").concat(months[current.getMonth()], " '").concat(yearArr.join("")); //set situation
 
-  situation.textContent = apiResponse.weather[0].main; //set icon here
+  situation.textContent = apiResponse.weather[0].main;
+  var container = document.getElementById("container"); //set the background
+
+  if (situation.textContent == "Clouds") {
+    container.style.backgroundImage = "url(https://images.pexels.com/photos/1384901/pexels-photo-1384901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)";
+  }
+
+  if (situation.textContent == "Clear") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/754419/pexels-photo-754419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  }
+
+  if (situation.textContent == "Mist") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/994883/pexels-photo-994883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  }
+
+  if (situation.textContent == "Rain") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/1154510/pexels-photo-1154510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://images.pexels.com/photos/1154510/pexels-photo-1154510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  }
+
+  if (situation.textContent == "Haze") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/7919/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  }
+
+  if (situation.textContent == "Drizzle") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/11015218/pexels-photo-11015218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  }
+
+  if (situation.textContent == "snow") {
+    container.style.backgroundImage = "url('https://images.pexels.com/photos/869258/pexels-photo-869258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+  } //set icon here
+
 
   weatherIcon.innerHTML = "<img src=\"http://openweathermap.org/img/wn/".concat(apiResponse.weather[0].icon, ".png\">"); //set description
 
@@ -302,7 +342,33 @@ apiRequest.onreadystatechange = function () {
   pressure.textContent = "".concat(apiResponse.main.pressure, "hPa"); //set visibility
 
   var km = apiResponse.visibility / 1000;
-  visibility.textContent = "".concat(km, "km");
+  visibility.textContent = "".concat(km, "km"); // set the 3 day forecast
+  //get the lat and lon of the country
+
+  var lat = apiResponse.coord.lat;
+  var lon = apiResponse.coord.lon; //get the api of 5 day forecast
+
+  dayRequest.open('GET', 'https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=5d27d5f754c4d9fb46a79a45598f8f18&mdoe=json&units=metric'); //send the request
+
+  dayRequest.send(); //this function is called everytime the ready state changes
+  //ready state changes from 0 to 4
+  //4 means object is populate by the api
+
+  dayRequest.onreadystatechange = function () {
+    var dayResponse = JSON.parse(dayRequest.response);
+    console.log(dayResponse); //5 13 21 = next days
+
+    console.log(dayResponse.list[5]); //set the temp and weather for first day
+
+    firstTemp.textContent = Math.round(dayResponse.list[5].main.temp) + '°C';
+    firstWeather.textContent = dayResponse.list[5].weather[0].main; //set the temp and weather for second day
+
+    secondTemp.textContent = Math.round(dayResponse.list[13].main.temp) + '°C';
+    secondWeather.textContent = dayResponse.list[13].weather[0].main; //set the temp and weather for third day
+
+    thirdTemp.textContent = Math.round(dayResponse.list[21].main.temp) + '°C';
+    thirdWeather.textContent = dayResponse.list[21].weather[0].main;
+  };
 };
 },{"./../scss/main.scss":"scss/main.scss"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -332,7 +398,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61437" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60606" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

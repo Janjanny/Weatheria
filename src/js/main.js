@@ -17,6 +17,17 @@ const gust = document.querySelector(".gust");
 const pressure = document.querySelector(".pressure");
 const visibility = document.querySelector(".visibility");
 
+//variables for 3 day forecast
+const firstTemp = document.querySelector(".first-temp");
+const firstWeather = document.querySelector(".first-weather");
+
+const secondTemp = document.querySelector(".second-temp");
+const secondWeather = document.querySelector(".second-weather");
+
+const thirdTemp = document.querySelector(".third-temp");
+const thirdWeather = document.querySelector(".third-weather");
+
+
 let current = new Date();
 
 const days = {
@@ -45,9 +56,13 @@ const months = [
 ]
 
 
+// this is api for the daily forecast
 //add the http request for requesting the api
 let apiRequest = new XMLHttpRequest();
 
+
+//request for 5 day api forecast
+let dayRequest = new XMLHttpRequest();
 
 
 //add event listener when submitting the form
@@ -102,6 +117,36 @@ apiRequest.onreadystatechange = () => {
 
     //set situation
     situation.textContent = apiResponse.weather[0].main;
+    let container = document.getElementById("container");
+   
+    //set the background
+    if(situation.textContent == "Clouds") {
+        container.style.backgroundImage = "url(https://images.pexels.com/photos/1384901/pexels-photo-1384901.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)";
+    }
+
+    if (situation.textContent == "Clear") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/754419/pexels-photo-754419.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+    }
+
+    if (situation.textContent == "Mist") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/994883/pexels-photo-994883.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+    }
+
+    if (situation.textContent == "Rain") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/1154510/pexels-photo-1154510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://images.pexels.com/photos/1154510/pexels-photo-1154510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+    }
+
+    if (situation.textContent == "Haze") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/7919/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+    }
+
+    if (situation.textContent == "Drizzle") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/11015218/pexels-photo-11015218.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')"
+    }
+
+    if (situation.textContent == "snow") {
+        container.style.backgroundImage = "url('https://images.pexels.com/photos/869258/pexels-photo-869258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')";
+    }
 
     //set icon here
     weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${apiResponse.weather[0].icon}.png">`
@@ -167,4 +212,57 @@ apiRequest.onreadystatechange = () => {
     let km = apiResponse.visibility / 1000;
     visibility.textContent = `${km}km`
 
+
+
+
+
+    // set the 3 day forecast
+
+    //get the lat and lon of the country
+    let lat = apiResponse.coord.lat;
+    let lon = apiResponse.coord.lon; 
+    
+    //get the api of 5 day forecast
+    dayRequest.open ('GET', 'https://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid=5d27d5f754c4d9fb46a79a45598f8f18&mdoe=json&units=metric');
+
+    //send the request
+    dayRequest.send();
+
+    //this function is called everytime the ready state changes
+    //ready state changes from 0 to 4
+    //4 means object is populate by the api
+
+    dayRequest.onreadystatechange = () => {
+
+        const dayResponse = JSON.parse(dayRequest.response);
+
+        console.log(dayResponse);
+
+
+        //5 13 21 = next days
+        console.log(dayResponse.list[5]);
+
+
+        //set the temp and weather for first day
+        firstTemp.textContent = Math.round(dayResponse.list[5].main.temp) + '°C';
+
+        firstWeather.textContent = dayResponse.list[5].weather[0].main;
+
+
+        //set the temp and weather for second day
+        secondTemp.textContent = Math.round(dayResponse.list[13].main.temp) + '°C';
+        secondWeather.textContent = dayResponse.list[13].weather[0].main;
+
+
+        //set the temp and weather for third day
+        thirdTemp.textContent = Math.round(dayResponse.list[21].main.temp) + '°C';
+
+        thirdWeather.textContent = dayResponse.list[21].weather[0].main;
+    }
+
 }
+
+
+
+
+
